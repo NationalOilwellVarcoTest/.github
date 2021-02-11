@@ -15,8 +15,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+      - name: Install checkers and linters
+        run: |
+          rustup component add rustfmt
+          rustup component add clippy
+      - name: Check Formatting
+        run: cargo fmt --all -- --check
+      - name: Check Idiomatic
+        run: cargo clippy --all --all-features -- -D warnings
+      - uses: actions/checkout@v2
+      - name: Build
+        run: cargo build --verbose
+      - name: Run tests
+        run: cargo test --verbose
