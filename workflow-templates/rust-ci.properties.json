@@ -1,0 +1,8 @@
+{
+    "name": "Rust Workflow",
+    "description": "Rust CI workflow template.",
+    "iconName": "blank",
+    "categories": [
+        "Rust"
+    ]
+}
